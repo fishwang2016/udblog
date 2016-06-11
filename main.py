@@ -4,11 +4,18 @@
 import webapp2
 import os
 import urllib
-
 import jinja2
+import logging
 
 template_dir = os.path.join(os.path.dirname(__file__),'templates')
-jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir))
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),autoescape =True)
+
+from google.appengine.ext import db
+
+class Post(db.Model):
+    title = db.StringProperty(required =True)
+    content = db.StringProperty(required = True)
+    created = db.DateTimeProperty(auto_now_add = True)
 
 class Handler(webapp2.RequestHandler):
     def write(self,output):
@@ -18,17 +25,25 @@ class Handler(webapp2.RequestHandler):
         return t.render(kw) 
     def render(self,template,**kw):
         self.write(self.render_str(template,**kw))
-import logging
+
+
 class MainHandler(Handler):
+    def render_front(self,title="",post="",error=""):
+        posts = db.GqlQuery("SELECT * From Post ORDER by created DESC")
+        self.render("index.html",title=title,post=post,error=error,posts = posts)   
     def get(self):
-        self.render('index.html')
+        self.render_front()
     def post(self):
-        
-        title = self.response.get("title")
-        content = self.response.get("conent")
-        logging.info(title)
-        logging.info(content)
-        self.render('index.html',title =title,content=content)
+        title = self.request.get("title")
+        content = self.request.get("content")
+        if title and content:
+            post =Post(title=title, content=content)
+            post.put()
+            self.redirect("/")
+
+        else:
+            error ="Both title and content are requried!! Please check."
+            self.render('index.html',title =title,content=content,error=error)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
