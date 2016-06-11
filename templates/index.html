@@ -12,17 +12,18 @@
     {% endif %}
    <div class ="container">
    <form method="post">
-       <label ><div>Title: </div> <input id ="edit-title" type="text" name="title" /></label>
+       <label ><div >Title: </div> <input value= "{{title}}" id ="edit-title" type="text" name="title" /></label>
        <div>Content:</div>
-       <textarea  name="content" cols="80" rows="30" id="edit-post"></textarea>
+       <textarea  name="content" cols="80" rows="30" id="edit-post">{{content}}</textarea>
        </br>
        <input type="submit">
    </form>
    <hr>
 
    {% for post in posts %}
-   <div class="title">{{post.title}}</div>
-      <div class="post">{{post.content}}</div>
+
+   <h1> <div class="title">{{post.title}}</div></h1>
+   <p>   <div class="post">{{post.content}}</div></p>
    {% endfor %}
 
    </div>

@@ -14,7 +14,7 @@ from google.appengine.ext import db
 
 class Post(db.Model):
     title = db.StringProperty(required =True)
-    content = db.StringProperty(required = True)
+    content = db.TextProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
 
 class Handler(webapp2.RequestHandler):
@@ -25,12 +25,17 @@ class Handler(webapp2.RequestHandler):
         return t.render(kw) 
     def render(self,template,**kw):
         self.write(self.render_str(template,**kw))
+class PostHandler(Handler):
+    def get(self,post_id):#the mapping url id will go here
+        post =Post.get(post_id)
+        logging.info(post)
+        self.write(post.content)
 
 
 class MainHandler(Handler):
-    def render_front(self,title="",post="",error=""):
+    def render_front(self,title="",content="",error=""):
         posts = db.GqlQuery("SELECT * From Post ORDER by created DESC")
-        self.render("index.html",title=title,post=post,error=error,posts = posts)   
+        self.render("index.html",title=title,content=content,error=error,posts = posts)   
     def get(self):
         self.render_front()
     def post(self):
@@ -41,10 +46,11 @@ class MainHandler(Handler):
             post.put()
             self.redirect("/")
 
+
         else:
             error ="Both title and content are requried!! Please check."
-            self.render('index.html',title =title,content=content,error=error)
+            self.render_front(title =title,content=content,error=error)
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),(r'/(.*)',PostHandler)
 ], debug=True)
