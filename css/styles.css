@@ -1,0 +1,17 @@
+.container{
+  position:absolute;
+  width:800px;
+  margin:0, auto;
+}
+
+body{
+  width:850px;
+  margin: 0 auto;
+  }
+#edit-title{
+margin: 10px 10px;
+}
+
+#edit-post{
+margin: 10px 10px;
+}
