@@ -25,9 +25,11 @@ class Handler(webapp2.RequestHandler):
         return t.render(kw) 
     def render(self,template,**kw):
         self.write(self.render_str(template,**kw))
+
 class PostHandler(Handler):
     def get(self,post_id):#the mapping url id will go here
-        post =Post.get(post_id)
+        post_id= int(post_id)
+        post =Post.get_by_id(post_id)
         logging.info(post)
         self.write(post.content)
 
@@ -35,6 +37,8 @@ class PostHandler(Handler):
 class MainHandler(Handler):
     def render_front(self,title="",content="",error=""):
         posts = db.GqlQuery("SELECT * From Post ORDER by created DESC")
+        for post in posts:
+            logging.info(post.key().id())
         self.render("index.html",title=title,content=content,error=error,posts = posts)   
     def get(self):
         self.render_front()
@@ -45,12 +49,10 @@ class MainHandler(Handler):
             post =Post(title=title, content=content)
             post.put()
             self.redirect("/")
-
-
         else:
             error ="Both title and content are requried!! Please check."
             self.render_front(title =title,content=content,error=error)
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),(r'/(.*)',PostHandler)
+    ('/', MainHandler),(r'/(\d+)',PostHandler)
 ], debug=True)

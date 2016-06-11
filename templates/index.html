@@ -22,7 +22,7 @@
 
    {% for post in posts %}
 
-   <h1> <div class="title">{{post.title}}</div></h1>
+   <h1> <div class="title"><a href="{{post.key().id()}}">{{post.title}}</a></div></h1>
    <p>   <div class="post">{{post.content}}</div></p>
    {% endfor %}
 
