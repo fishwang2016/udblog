@@ -18,3 +18,10 @@ margin: 10px 10px;
 color:red;
 margin-bottom:10px;
 }
+
+.post-title{
+  font-size:40px;
+}
+.post-content{
+  font-size:18px;
+}

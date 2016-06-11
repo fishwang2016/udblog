@@ -29,9 +29,14 @@ class Handler(webapp2.RequestHandler):
 class PostHandler(Handler):
     def get(self,post_id):#the mapping url id will go here
         post_id= int(post_id)
-        post =Post.get_by_id(post_id)
-        logging.info(post)
-        self.write(post.content)
+        try:
+           post =Post.get_by_id(post_id)
+           if post:
+               self.render("post.html",post=post) 
+           else:
+               self.write("no page found 404")
+        except:
+           self.write("no page found!404")
 
 
 class MainHandler(Handler):

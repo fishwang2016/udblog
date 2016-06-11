@@ -22,8 +22,9 @@
 
    {% for post in posts %}
 
-   <h1> <div class="title"><a href="{{post.key().id()}}">{{post.title}}</a></div></h1>
-   <p>   <div class="post">{{post.content}}</div></p>
+   <h1> <div class="post-title"><a href="{{post.key().id()}}">{{post.title}}</a></div></h1>
+
+   <p>   <div class="post-contentt">{{post.content}}</div></p>
    {% endfor %}
 
    </div>
