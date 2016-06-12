@@ -4,13 +4,19 @@
 	<form method="post">
 
 		<ul class="login">
-		<li class= "login-item"><span class="login-label">User Name:</span><input type="text" name="username"/></li>
-		<li class= "login-item"><span class="login-label">Password:</span><input type="password" name="password"></li>
+		<li class= "login-item"><span class="login-label">User Name:</span><input type="text" name="username" value ="{{username}}"/></li>
+		<li class= "login-item"><span class="login-label">Password:</span><input type="password" name="password" value="{{password}}"></li>
+
 		<li class= "login-item"><span class="login-label">Email:</span><input type="text" name ="email"></li>
 
 	   </ul>
+	       {% if error %}
 
-	   	    <input type="submit">
+	        <div class="error">{{ error }}</div>  
+
+	       {% endif %}
+
+	   	    <input type="submit" value="Register">
 
 	</form>
 

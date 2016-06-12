@@ -25,6 +25,7 @@ class Handler(webapp2.RequestHandler):
         return t.render(kw) 
     def render(self,template,**kw):
         self.write(self.render_str(template,**kw))
+
 class LoginHandler(Handler):
     def get(self):
         self.render("login.html")
@@ -35,6 +36,9 @@ class LoginHandler(Handler):
         email = self.request.get("email")
         if username and password:
             self.write("thanks!")
+        else:
+            error ="Both User Name and Password are required! Try again!"
+            self.render("login.html",username=username, password=password,error=error)
 
 class AboutHandler(Handler):
     def get(self):

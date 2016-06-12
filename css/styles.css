@@ -1,101 +1,106 @@
-.container{
-  position:absolute;
-  width:800px;
-  margin:30px 10px 10px 10px;
-}
-body{
-  width:850px;
-  margin: 0 auto;
-  }
-#edit-title{
-margin: 10px 10px;
+
+body {
+    width: 850px;
+    margin: 0 auto;
+    font-family: Arial
 }
 
-#edit-post{
-margin: 10px 10px;
-}
-.error{
-color:red;
-margin-bottom:10px;
-}
-
-.post-title{
-  font-size:40px;
-}
-.post-title a{
-	  text-decoration: none;
-
-
-}
-.post-title a:hover{
-     
-  border-bottom: solid 2px  #d69a40;
+.container {
+    position: absolute;
+    width: 800px;
+    margin: 30px 10px 10px 10px;
 }
 
 
-.post-content{
-  font-size:18px;
+#edit-title {
+    margin: 10px 10px;
+}
+
+#edit-post {
+    margin: 10px 10px;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.post-title {
+    font-size: 40px;
+}
+
+.post-title a {
+    text-decoration: none;
+}
+
+.post-title a:hover {
+    border-bottom: solid 2px  #d69a40;
+}
+
+.post-content {
+    font-size: 18px;
 }
 
 /* Nav bar*/
 
-.nav-bar .menu{
-
-
-	list-style-type: none;
-	float:left;
-	margin-right:20px;
+.nav-bar .menu {
+    list-style-type: none;
+    float: left;
+    margin-right: 20px;
 }
 
-.nav-bar .menu a{
-	height:30px;
-	padding:5px;
-	font-size: 20px;
-	text-transform: uppercase;
-	text-decoration: none;
+.nav-bar .menu a {
+    height: 30px;
+    padding: 5px;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 
-
-.nav-bar .menu a:hover{
-	border-bottom: dashed 1px #bbb;
-	background-color: #d69a40
+.nav-bar .menu a:hover {
+    border-bottom: dashed 1px #bbb;
+    background-color: #d69a40;
 }
 
-
-.nav-bar .menu a:active{
-	border-bottom: solid 1px red;
-
+.nav-bar .menu a:active {
+    background-color: red;
 }
 
-.nav-bar{
-	margin-bottom: 30px;
-	padding: 5px 10px;
+.nav-bar {
+    margin-bottom: 30px;
+    padding: 5px 10px;
 }
 
 .clear {
-   clear:both;
+    clear: both;
 }
 
 
 /* post */
 
 .post {
-	border-bottom:solid 1px #333;  
+    border-bottom: solid 1px #333;
 }
 
 .post:last-of-type {
-	border-bottom: none;
+    border-bottom: none;
 }
 
 /* Login item */
 
 
-.login-item{
-	list-style-type: none;
+.login-item {
+    list-style-type: none;
+    display:flex;
+    margin:5px 5px;
 }
 
-.login-label{
-	width:30px;
+.login-label {
+    width: 80px;
+    display:block;
+}
+.login{
+	padding:0 0;
 }
 
 
