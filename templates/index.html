@@ -1,32 +1,16 @@
- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Multi User Blog</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <h1>My Blog </h1>
-    {% if error: %} 
-     <div class= "error"> {{error}}</div> 
-    {% endif %}
-   <div class ="container">
-   <form method="post">
-       <label ><div >Title: </div> <input value= "{{title}}" id ="edit-title" type="text" name="title" /></label>
-       <div>Content:</div>
-       <textarea  name="content" cols="80" rows="30" id="edit-post">{{content}}</textarea>
-       </br>
-       <input type="submit">
-   </form>
-   <hr>
+    {% extends "base.html" %}
 
-   {% for post in posts %}
+        {% block content %}
+          
+              <hr>
 
-   <h1> <div class="post-title"><a href="{{post.key().id()}}">{{post.title}}</a></div></h1>
+               {% for post in posts %}
 
-   <p>   <div class="post-contentt">{{post.content}}</div></p>
-   {% endfor %}
+                   <h1> <div class="post-title"><a href="{{post.key().id()}}">{{post.title}}</a></div></h1>
 
-   </div>
-</body>
-</html>
+                   <p>   <div class="post-contentt">{{post.content}}</div></p>
+               {% endfor %}
+
+
+
+       {% endblock %}

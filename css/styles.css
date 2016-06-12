@@ -1,7 +1,7 @@
 .container{
   position:absolute;
   width:800px;
-  margin:0, auto;
+  margin:30px 10px 10px 10px;
 }
 body{
   width:850px;
@@ -24,4 +24,23 @@ margin-bottom:10px;
 }
 .post-content{
   font-size:18px;
+}
+
+/* Nav bar*/
+
+.nav-bar .menu{
+
+
+	list-style-type: none;
+	float:left;
+	margin-right:20px;
+}
+
+.nav-bar{
+	margin-bottom: 20px;
+	padding: 5px 10px;
+}
+
+.clear {
+   clear:both;
 }
