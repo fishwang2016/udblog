@@ -2,13 +2,16 @@
 
         {% block content %}
           
-              <hr>
 
                {% for post in posts %}
 
+               <div class="post">
+
                    <h1> <div class="post-title"><a href="{{post.key().id()}}">{{post.title}}</a></div></h1>
 
-                   <p>   <div class="post-contentt">{{post.content}}</div></p>
+                    <div class="post-contentt"><p>{{post.content}}</p></div>
+
+               </div>
                {% endfor %}
 
 

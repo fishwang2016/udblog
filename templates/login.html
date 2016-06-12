@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<form method="post">
+
+		<ul class="login">
+		<li class= "login-item"><span class="login-label">User Name:</span><input type="text" name="username"/></li>
+		<li class= "login-item"><span class="login-label">Password:</span><input type="password" name="password"></li>
+		<li class= "login-item"><span class="login-label">Email:</span><input type="text" name ="email"></li>
+
+	   </ul>
+
+	   	    <input type="submit">
+
+	</form>
+
+{% endblock %}

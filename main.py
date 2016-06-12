@@ -25,6 +25,20 @@ class Handler(webapp2.RequestHandler):
         return t.render(kw) 
     def render(self,template,**kw):
         self.write(self.render_str(template,**kw))
+class LoginHandler(Handler):
+    def get(self):
+        self.render("login.html")
+
+    def post(self):
+        username = self.request.get("username")
+        password = self.request.get("password")
+        email = self.request.get("email")
+        if username and password:
+            self.write("thanks!")
+
+class AboutHandler(Handler):
+    def get(self):
+        self.render("about.html")
 
 class EditHandler(Handler):
     def get(self):
@@ -56,7 +70,7 @@ class PostHandler(Handler):
 
 class MainHandler(Handler):
     def render_front(self,title="",content="",error=""):
-        posts = db.GqlQuery("SELECT * From Post ORDER by created DESC")
+        posts = db.GqlQuery("SELECT * From Post  ORDER by created DESC")
         for post in posts:
             logging.info(post.key().id())
         self.render("index.html",title=title,content=content,error=error,posts = posts)   
@@ -67,5 +81,5 @@ class MainHandler(Handler):
 
 
 app = webapp2.WSGIApplication([
-   ('/edit',EditHandler),   ('/', MainHandler),(r'/(\d+)',PostHandler)
+ ('/login',LoginHandler), ('/about',AboutHandler), ('/edit',EditHandler),   ('/', MainHandler),(r'/(\d+)',PostHandler)
 ], debug=True)
